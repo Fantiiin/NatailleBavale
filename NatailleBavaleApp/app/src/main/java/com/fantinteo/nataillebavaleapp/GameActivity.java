@@ -123,18 +123,22 @@ public class GameActivity extends Activity {
         int result = playerGrid.fireShot(x, y);
         playerAdapter.notifyDataSetChanged();
 
+        simpleAI.updateStatus(x, y, result);
+
         String message;
-        if (result == 1) {
+        if (result == 1) { // TOUCHÉ
             message = "L'IA vous a TOUCHÉ en (" + (x+1) + "," + (y+1) + ") !";
             updateStatus(message);
+            // L'IA rejoue
             handler.postDelayed(this::handleAIShot, 1500);
-        } else if (result == 2) {
+        } else if (result == 2) { // COULÉ
             message = "L'IA a COULÉ un de vos navires !";
             updateStatus(message);
             if (playerGrid.allShipsSunk()) {
                 endGame("DÉFAITE...");
                 return;
             }
+            // L'IA rejoue (car un navire coulé ne termine pas son tour)
             handler.postDelayed(this::handleAIShot, 1500);
         } else { // Raté
             message = "L'IA a RATÉ en (" + (x+1) + "," + (y+1) + "). Votre tour.";
