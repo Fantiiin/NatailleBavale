@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
@@ -43,11 +44,33 @@ public class GridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        TextView cell;
+
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.grid_cell_layout, parent, false);
+            cell = convertView.findViewById(R.id.grid_cell_text);
+            convertView.setTag(cell);
+        } else {
+            cell = (TextView) convertView.getTag();
         }
 
-        TextView cell = convertView.findViewById(R.id.grid_cell_text);
+        // On vérifie si la GridView a été mesurée.
+        if (parent.getWidth() > 0) {
+            GridView gridView = (GridView) parent;
+            int numColumns = gridView.getNumColumns();
+            // getHorizontalSpacing() est sûr à utiliser ici.
+            int horizontalSpacing = gridView.getHorizontalSpacing();
+
+            // Calcul de la largeur exacte d'une colonne.
+            int columnWidth = (parent.getWidth() - (horizontalSpacing * (numColumns - 1))) / numColumns;
+
+            // Si la hauteur actuelle de la cellule ne correspond pas, on la force.
+            // Cela corrige à la fois le problème de taille initiale et le bug de la cellule bleue.
+            if (convertView.getLayoutParams().height != columnWidth) {
+                convertView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, columnWidth));
+            }
+        }
+
 
         int x = position % playerGrid.getCols();
         int y = position / playerGrid.getCols();

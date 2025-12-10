@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -41,17 +42,31 @@
 
     </LinearLayout>
 
-    <GridView
-        android:id="@+id/placement_grid_view"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:numColumns="10"
-        android:horizontalSpacing="1dp"
-        android:verticalSpacing="1dp"
-        android:stretchMode="columnWidth"
-        android:gravity="center"
-        android:background="@color/colorPrimaryDark"/>
+        android:layout_weight="1">
+
+        <GridView
+            android:id="@+id/placement_grid_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:numColumns="10"
+            android:horizontalSpacing="1dp"
+            android:verticalSpacing="1dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="1:1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- ... -->
+
 
     <Button
         android:id="@+id/btn_next_ship"

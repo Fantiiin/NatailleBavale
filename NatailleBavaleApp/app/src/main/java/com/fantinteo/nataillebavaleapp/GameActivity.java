@@ -1,6 +1,9 @@
 package com.fantinteo.nataillebavaleapp;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -165,7 +168,27 @@ public class GameActivity extends Activity {
 
     private void endGame(String message) {
         updateStatus(message);
+
+        // 1. Désactiver le tir
         GridView opponentGridView = findViewById(R.id.opponent_grid_view);
         opponentGridView.setOnItemClickListener(null);
+
+        // 2. Afficher la boîte de dialogue de fin de partie
+        new AlertDialog.Builder(this)
+                .setTitle("Partie Terminée")
+                .setMessage(message + "\nVoulez-vous retourner au menu principal ?")
+                .setPositiveButton("Retour au Menu", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Crée un Intent pour retourner à MainActivity
+                        Intent intent = new Intent(GameActivity.this, MainActivity.class);
+                        // Ces drapeaux s'assurent que toutes les activités précédentes (Placement, Game) sont fermées
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setCancelable(false) // Empêche la fermeture par clic extérieur ou bouton retour
+                .show();
     }
 }
