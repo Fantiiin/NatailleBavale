@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    android:padding="32dp"
+    android:background="@color/colorWater">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Grille de Bataille Navale"
-        android:textSize="24sp"
+        android:text="BATAILLE NAVALE"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginBottom="50dp"/>
+
+    <Button
+        android:id="@+id/btn_start_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="COMMENCER LA PARTIE"
+        android:textSize="18sp"
+        android:padding="15dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white"
         android:layout_marginBottom="20dp"/>
 
-    <!-- Notre grille de jeu -->
-    <GridLayout
-        android:id="@+id/grille_layout"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_settings"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="10"
-        android:rowCount="10"
-        android:alignmentMode="alignMargins"
-        android:columnOrderPreserved="false"
-        android:background="#DDDDDD" >
-
-        <!-- Les cases seront ajoutées ici via le code Java -->
-
-    </GridLayout>
+        android:text="PARAMÈTRES (Taille Grille)"
+        android:textSize="18sp"
+        android:padding="15dp"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@android:color/black"/>
 
 </LinearLayout>

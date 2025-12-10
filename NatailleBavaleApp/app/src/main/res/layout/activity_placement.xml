@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tv_placement_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Placez votre Croiseur (3 cases)"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingBottom="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Orientation : "
+            android:textSize="16sp"/>
+
+        <Switch
+            android:id="@+id/switch_orientation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:textOff="Horizontal"
+            android:textOn="Vertical"
+            android:showText="true"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/placement_grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:numColumns="10"
+        android:horizontalSpacing="1dp"
+        android:verticalSpacing="1dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:background="@color/colorPrimaryDark"/>
+
+    <Button
+        android:id="@+id/btn_next_ship"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="VALIDER LE PLACEMENT"
+        android:enabled="false"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>
